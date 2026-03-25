@@ -564,6 +564,13 @@ a:hover { text-decoration: none; }
   outline: none;
   color: var(--text);
 }
+.field select option{
+  color: #111827;
+  background: #ffffff;
+}
+.field select option:disabled{
+  color: #6b7280;
+}
 .field input::placeholder,
 .field textarea::placeholder{ color: rgba(229,231,235,0.45); }
 
