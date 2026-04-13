@@ -693,7 +693,7 @@ input, textarea, select{
   padding: 10px 12px;
 }
 textarea{ min-height: 110px; resize: vertical; }
-.msg{ color:#93c5fd; font-size:13px; }
+.msg{ color: var(--brand2); font-size:13px; }
 
 .catalog-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:16px; }
 .catalog-card{ border:1px solid var(--border); border-radius: var(--radius2); overflow:hidden; background: var(--panel); }
