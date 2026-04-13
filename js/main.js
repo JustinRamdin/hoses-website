@@ -34,8 +34,8 @@
       category: 'Hydraulic Hoses',
       shortDescription: 'Durable hydraulic hose solutions for heavy equipment and industrial systems.',
       fullDescription: 'High-performance hydraulic hoses for loaders, excavators, trucks, and industrial applications. Available with compatible fittings and adapters based on usage requirements.',
-      price: '',
-      availability: 'In stock (varies by size)',
+      price: 'TTD 850',
+      availability: 'In Stock',
       tags: 'hydraulic, industrial, heavy equipment',
       mainImage: 'https://images.unsplash.com/photo-1581090700227-1e8e8f95f77f?auto=format&fit=crop&w=1200&q=80',
       additionalImages: [],
@@ -48,8 +48,8 @@
       category: 'Pressure Washer',
       shortDescription: 'Pressure washer hoses and couplers for commercial and industrial cleaning jobs.',
       fullDescription: 'Pressure washer hose options with durable construction, plus connectors and fittings for washdown systems in homes, workshops, and industrial environments.',
-      price: '',
-      availability: 'Available',
+      price: 'TTD 450',
+      availability: 'Low Stock',
       tags: 'pressure washer, cleaning, couplers',
       mainImage: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
       additionalImages: [],
@@ -305,6 +305,119 @@ Details: ${details}`;
     `).join('');
   }
 
+  
+  function normalizeStockStatus(rawValue) {
+    const value = String(rawValue || '').toLowerCase();
+    if (value.includes('out')) return 'out_of_stock';
+    if (value.includes('low')) return 'low_stock';
+    if (value.includes('in stock') || value.includes('available')) return 'in_stock';
+    return 'in_stock';
+  }
+
+  function stockLabel(status) {
+    return {
+      in_stock: 'In Stock',
+      low_stock: 'Low Stock',
+      out_of_stock: 'Out of Stock'
+    }[status] || 'In Stock';
+  }
+
+  function parseNumericPrice(priceValue) {
+    const numeric = parseFloat(String(priceValue || '').replace(/[^0-9.]/g, ''));
+    return Number.isFinite(numeric) ? numeric : null;
+  }
+
+  function renderAllItemsGrid(items, container) {
+    if (!container) return;
+    if (!items.length) {
+      container.innerHTML = '<p class="section-sub">No matching items found. Try adjusting your search or filters.</p>';
+      return;
+    }
+
+    container.innerHTML = items.map((item) => {
+      const stockStatus = normalizeStockStatus(item.availability);
+      const priceText = item.price || 'Price on request';
+      return `
+        <article class="catalog-card catalog-card-rich">
+          <img src="${item.mainImage || 'assets/images/sgl-logo.png'}" alt="${item.name}" loading="lazy" />
+          <div class="catalog-body">
+            <div class="catalog-meta-row">
+              <p class="kicker">${item.category || 'General'}</p>
+              <span class="stock-pill ${stockStatus}">${stockLabel(stockStatus)}</span>
+            </div>
+            <h3>${item.name}</h3>
+            <p>${item.shortDescription || 'Please contact us for item details.'}</p>
+            <p class="catalog-price">${priceText}</p>
+            <a class="btn btn-small" href="item.html?id=${encodeURIComponent(item.id)}">View Item</a>
+          </div>
+        </article>
+      `;
+    }).join('');
+  }
+
+  function initAllItemsPage() {
+    const root = document.querySelector('[data-all-items-page]');
+    if (!root) return;
+
+    const searchInput = root.querySelector('[data-catalog-search]');
+    const categoryFilter = root.querySelector('[data-catalog-filter="category"]');
+    const stockFilter = root.querySelector('[data-catalog-filter="stock"]');
+    const priceFilter = root.querySelector('[data-catalog-filter="price"]');
+    const results = root.querySelector('[data-catalog-results]');
+    const grid = root.querySelector('[data-all-items-grid]');
+
+    const items = getItems().sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+    const categories = [...new Set(items.map((item) => String(item.category || '').trim()).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+
+    categories.forEach((category) => {
+      const option = document.createElement('option');
+      option.value = category;
+      option.textContent = category;
+      categoryFilter?.append(option);
+    });
+
+    function applyFilters() {
+      const query = String(searchInput?.value || '').trim().toLowerCase();
+      const selectedCategory = String(categoryFilter?.value || 'all');
+      const selectedStock = String(stockFilter?.value || 'all');
+      const selectedPrice = String(priceFilter?.value || 'all');
+
+      const filtered = items.filter((item) => {
+        const haystack = [item.name, item.shortDescription, item.fullDescription, item.category, item.tags]
+          .map((value) => String(value || '').toLowerCase())
+          .join(' ');
+
+        const stockStatus = normalizeStockStatus(item.availability);
+        const numericPrice = parseNumericPrice(item.price);
+
+        const matchesQuery = !query || haystack.includes(query);
+        const matchesCategory = selectedCategory === 'all' || (item.category || '') === selectedCategory;
+        const matchesStock = selectedStock === 'all' || stockStatus === selectedStock;
+        const matchesPrice = selectedPrice === 'all'
+          || (selectedPrice === 'priced' && numericPrice !== null)
+          || (selectedPrice === 'unpriced' && numericPrice === null)
+          || (selectedPrice === 'under_500' && numericPrice !== null && numericPrice < 500)
+          || (selectedPrice === '500_1000' && numericPrice !== null && numericPrice >= 500 && numericPrice <= 1000)
+          || (selectedPrice === '1000_plus' && numericPrice !== null && numericPrice > 1000);
+
+        return matchesQuery && matchesCategory && matchesStock && matchesPrice;
+      });
+
+      if (results) {
+        const noun = filtered.length === 1 ? 'item' : 'items';
+        results.textContent = `${filtered.length} ${noun} shown`;
+      }
+      renderAllItemsGrid(filtered, grid);
+    }
+
+    [searchInput, categoryFilter, stockFilter, priceFilter].forEach((el) => {
+      el?.addEventListener('input', applyFilters);
+      el?.addEventListener('change', applyFilters);
+    });
+
+    applyFilters();
+  }
+
   function initProductsPage() {
     const container = document.querySelector('[data-catalog-grid]');
     if (!container) return;
@@ -500,6 +613,7 @@ Details: ${details}`;
   mountAuthButtons();
   initAuthPage();
   initProductsPage();
+  initAllItemsPage();
   initItemPage();
   initDashboardPage();
 })();

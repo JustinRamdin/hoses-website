@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>All Items | SGL Hose n' Cable Solutions</title>
+  <meta name="description" content="Browse all SGL Hose n' Cable Solutions items in one place. Search by name, keyword, description, and category, then filter by category, stock status, and price range." />
+  <link rel="canonical" href="https://sgltt.com/all-items.html" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="nav" role="navigation" aria-label="Primary">
+        <a class="brand" href="index.html" aria-label="SGL Hose n' Cable Solutions home">
+          <img src="assets/images/sgl-logo.png" alt="SGL Hose n' Cable Solutions logo" width="56" height="56" loading="eager" />
+          <div class="brand-text">
+            <strong>SGL Hose n' Cable Solutions</strong>
+            <span>All Catalog Items</span>
+          </div>
+        </a>
+
+        <button class="btn btn-small menu-btn" type="button" data-menu-btn aria-expanded="false" aria-controls="site-nav">☰ Menu</button>
+
+        <nav id="site-nav" class="nav-links" data-nav-links>
+          <a href="index.html" data-nav>Home</a>
+          <a href="products.html" data-nav>Products</a>
+          <a href="all-items.html" data-nav>All Items</a>
+          <a href="cable-repair-trinidad.html" data-nav>Services</a>
+          <a href="contact.html" data-nav>Contact</a>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="btn btn-small" href="tel:+18687017720">Call</a>
+          <a class="btn btn-primary btn-small" href="https://wa.me/18687017720" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero hero-small">
+      <div class="container">
+        <div class="hero-wrap hero-wrap-single">
+          <div class="hero-main">
+            <div class="kicker">Central Product Catalog</div>
+            <h1>All Items</h1>
+            <p>Browse every item in one page. Use search and filters to quickly find exactly what you need.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container" data-all-items-page>
+        <div class="card catalog-toolbar">
+          <div class="catalog-search-wrap">
+            <label for="catalog-search" class="catalog-label">Search items</label>
+            <input id="catalog-search" class="catalog-search" type="search" placeholder="Search by name, keyword, description, or category" data-catalog-search />
+          </div>
+
+          <div class="catalog-filters">
+            <label class="catalog-label">Category
+              <select data-catalog-filter="category">
+                <option value="all">All categories</option>
+              </select>
+            </label>
+
+            <label class="catalog-label">Stock status
+              <select data-catalog-filter="stock">
+                <option value="all">All stock statuses</option>
+                <option value="in_stock">In Stock</option>
+                <option value="low_stock">Low Stock</option>
+                <option value="out_of_stock">Out of Stock</option>
+              </select>
+            </label>
+
+            <label class="catalog-label">Price range
+              <select data-catalog-filter="price">
+                <option value="all">All prices</option>
+                <option value="priced">With listed price</option>
+                <option value="under_500">Under 500</option>
+                <option value="500_1000">500 - 1000</option>
+                <option value="1000_plus">1000+</option>
+                <option value="unpriced">Price on request</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <p class="section-sub" data-catalog-results aria-live="polite"></p>
+        <div class="catalog-grid" data-all-items-grid></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><div class="copyright">© <span data-year></span> SGL Hose n' Cable Solutions</div></div></footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
