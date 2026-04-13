@@ -669,3 +669,51 @@ a:hover { text-decoration: none; }
   color: var(--muted2);
   font-size: 12.5px;
 }
+
+/* ---------- Auth + Dashboard + Catalog ---------- */
+.auth-links{ display:flex; gap:10px; }
+
+.auth-section{ padding: 56px 0; }
+.auth-grid{ display:grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap:18px; }
+.auth-card{ padding:20px; border:1px solid var(--border); border-radius: var(--radius2); background: var(--panel); }
+.auth-card h2{ margin-top:0; }
+.auth-toggle{ display:flex; gap:10px; margin-bottom:14px; }
+.auth-only-signup{ display:none; }
+.show-signup .auth-only-signup{ display:block; }
+.show-signup .auth-only-login{ display:none; }
+
+.form-grid{ display:grid; gap:12px; }
+label span{ display:block; margin-bottom:6px; color:var(--muted); font-size:13px; }
+input, textarea, select{
+  width:100%;
+  border-radius: 10px;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  padding: 10px 12px;
+}
+textarea{ min-height: 110px; resize: vertical; }
+.msg{ color:#93c5fd; font-size:13px; }
+
+.catalog-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:16px; }
+.catalog-card{ border:1px solid var(--border); border-radius: var(--radius2); overflow:hidden; background: var(--panel); }
+.catalog-card img{ width:100%; height:180px; object-fit:cover; }
+.catalog-body{ padding:14px; }
+.catalog-body h3{ margin: 4px 0 8px; }
+.catalog-body p{ color: var(--muted); }
+
+.item-detail-layout{ display:grid; grid-template-columns: 1.2fr .8fr; gap:18px; }
+.item-gallery{ display:grid; gap:12px; }
+.item-gallery img{ width:100%; border-radius: var(--radius2); border:1px solid var(--border); object-fit:cover; max-height:360px; }
+
+.dashboard-grid{ display:grid; grid-template-columns: 1fr; gap:18px; }
+.table-wrap{ overflow:auto; }
+table{ width:100%; border-collapse: collapse; }
+th,td{ text-align:left; border-bottom:1px solid var(--border); padding:10px 8px; }
+.manage-card{ display:grid; grid-template-columns: 110px 1fr; gap:12px; padding:12px; border:1px solid var(--border); border-radius:12px; margin-bottom:10px; }
+.manage-card img{ width:110px; height:80px; object-fit:cover; border-radius:10px; }
+
+@media (max-width: 860px){
+  .auth-grid, .item-detail-layout{ grid-template-columns: 1fr; }
+  .auth-links{ display:none; }
+}

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Up / Log In | SGL Hose n' Cable Solutions</title>
+  <meta name="description" content="Create an account or log in to manage catalog items and roles." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container">
+      <div class="nav" role="navigation" aria-label="Primary">
+        <a class="brand" href="index.html" aria-label="SGL home">
+          <img src="assets/images/sgl-logo.png" alt="SGL logo" width="56" height="56" loading="eager" />
+          <div class="brand-text"><strong>SGL Hose n' Cable Solutions</strong><span>Account Access</span></div>
+        </a>
+        <button class="btn btn-small menu-btn" type="button" data-menu-btn aria-expanded="false" aria-controls="site-nav">☰ Menu</button>
+        <nav id="site-nav" class="nav-links" data-nav-links>
+          <a href="index.html" data-nav>Home</a>
+          <a href="products.html" data-nav>Items</a>
+          <a href="cable-repair-trinidad.html" data-nav>Services</a>
+          <a href="contact.html" data-nav>Contact</a>
+        </nav>
+        <div class="nav-cta"><a class="btn btn-small" href="tel:+18687017720">Call</a></div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="auth-section">
+    <div class="container">
+      <div class="card" data-auth-root>
+        <div class="auth-toggle">
+          <button class="btn btn-small" type="button" data-switch-mode="login">Log In</button>
+          <button class="btn btn-small" type="button" data-switch-mode="signup">Sign Up</button>
+        </div>
+
+        <div class="auth-grid auth-only-login">
+          <section class="auth-card">
+            <h2>Log In</h2>
+            <p class="section-sub">Use your approved account to access the dashboard.</p>
+            <form class="form-grid" data-login-form>
+              <label><span>Username</span><input type="text" name="username" required /></label>
+              <label><span>Password</span><input type="password" name="password" required /></label>
+              <button class="btn btn-primary" type="submit">Log In</button>
+            </form>
+            <p class="msg" data-login-msg></p>
+          </section>
+          <section class="auth-card">
+            <h2>Default Super User</h2>
+            <p><strong>Username:</strong> justinramdin</p>
+            <p><strong>Password:</strong> 8yyncjWKstqd</p>
+            <p class="section-sub">This account has Super User / Admin privileges.</p>
+          </section>
+        </div>
+
+        <section class="auth-card auth-only-signup">
+          <h2>Create Account</h2>
+          <p class="section-sub">New accounts require super user approval before login.</p>
+          <form class="form-grid" data-signup-form>
+            <label><span>Username</span><input type="text" name="username" required /></label>
+            <label><span>Password</span><input type="password" name="password" required /></label>
+            <label><span>Requested Role</span>
+              <select name="role">
+                <option value="marketer">Marketer</option>
+                <option value="super_admin">Super User / Admin</option>
+              </select>
+            </label>
+            <button class="btn btn-primary" type="submit">Create Account</button>
+          </form>
+          <p class="msg" data-signup-msg></p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container"><div class="copyright">© <span data-year></span> SGL Hose n' Cable Solutions</div></div></footer>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
