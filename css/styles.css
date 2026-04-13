@@ -616,7 +616,7 @@ a:hover { text-decoration: none; }
   color: var(--text);
 }
 .field select option{
-  color: #111827;
+  color: var(--brand);
   background: #ffffff;
 }
 .field select option:disabled{
@@ -783,6 +783,9 @@ input, textarea, select{
   background: rgba(255,255,255,0.04);
   color: var(--text);
   padding: 10px 12px;
+}
+select option{
+  color: var(--brand);
 }
 textarea{ min-height: 110px; resize: vertical; }
 .msg{ color: var(--brand2); font-size:13px; }
