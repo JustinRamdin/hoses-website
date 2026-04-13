@@ -470,6 +470,44 @@ a:hover { text-decoration: none; }
   font-size: 14px;
 }
 .callout strong{ color: var(--text); }
+.callout-grid{
+  display: grid;
+  gap: 10px;
+}
+
+.trust-strip{
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+}
+.trust-stat{
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-weight: 800;
+  color: var(--text);
+}
+.trust-stat small{
+  color: var(--muted2);
+  font-weight: 700;
+}
+.testimonials{
+  display: grid;
+  gap: 10px;
+}
+.testimonial{
+  padding: 12px;
+  border-radius: var(--radius2);
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+}
+.testimonial p{ margin: 0; font-size: 13.5px; color: var(--text); }
+.testimonial span{ display:block; margin-top:6px; color: var(--muted2); font-size: 12.5px; }
+.logo-row{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
 .sep{
   border: 0;
@@ -596,6 +634,25 @@ a:hover { text-decoration: none; }
   color: var(--muted2);
   font-size: 12.5px;
 }
+.status-pill{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.05);
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 800;
+}
+.status-dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #f97316;
+}
+.status-dot.is-open{ background: #22c55e; }
 
 /* ---------- CTA band ---------- */
 .cta{
@@ -668,6 +725,31 @@ a:hover { text-decoration: none; }
   border-top: 1px solid var(--border);
   color: var(--muted2);
   font-size: 12.5px;
+}
+
+/* ---------- Sticky Mobile CTA ---------- */
+.sticky-cta{
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 60;
+  display: none;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(11,15,20,0.94);
+  backdrop-filter: blur(8px);
+}
+.sticky-cta .btn{
+  flex: 1;
+  padding: 11px 10px;
+  font-size: 13px;
+}
+@media (max-width: 860px){
+  .sticky-cta{ display: flex; }
+  body{ padding-bottom: 78px; }
 }
 
 /* ---------- Auth + Dashboard + Catalog ---------- */

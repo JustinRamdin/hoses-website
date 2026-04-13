@@ -123,6 +123,10 @@
               <a class="btn" href="tel:+18687017720">Call Now</a>
               <a class="btn" href="mailto:info@sgltt.com">Email</a>
             </div>
+            <div class="trust-strip">
+              <div class="trust-stat">Average WhatsApp response: <small>~15 minutes during business hours</small></div>
+              <p class="status-pill" data-open-status>Checking open status…</p>
+            </div>
           </div>
         </div>
       </div>
@@ -185,28 +189,22 @@
           <div class="cols-6">
             <div class="card">
               <h2 class="section-title" style="margin-top:0">Request a Quote</h2>
-              <p class="section-sub">
-                This form opens your email client. For the fastest response, WhatsApp photos.
-              </p>
+               <p class="section-sub">Submit once to open a prefilled WhatsApp quote request (no email app required).</p>
 
-              <!-- Mailto form (no backend required) -->
-              <form class="form"
-                    action="mailto:info@sgltt.com"
-                    method="post"
-                    enctype="text/plain">
+              <form class="form" data-quote-form>
                 <label class="field">
                   <span>Your name</span>
-                  <input name="Name" type="text" placeholder="Your name" required />
+                  <input name="name" type="text" placeholder="Your name" required />
                 </label>
 
                 <label class="field">
                   <span>Phone / WhatsApp</span>
-                  <input name="Phone" type="tel" placeholder="e.g. 701-7720" />
+                  <input name="phone" type="tel" placeholder="e.g. 701-7720" />
                 </label>
 
                 <label class="field">
                   <span>What do you need?</span>
-                  <select name="Category" required>
+                  <select name="category" required>
                     <option value="" selected disabled>Select a category</option>
                     <option>Hydraulic hose</option>
                     <option>Garden hose</option>
@@ -218,19 +216,42 @@
                 </label>
 
                 <label class="field">
+                  <span>Urgency</span>
+                  <select name="urgency">
+                    <option>Standard request</option>
+                    <option>Same-day request</option>
+                    <option>Emergency / downtime</option>
+                  </select>
+                </label>
+
+                <label class="field">
+                  <span>Location</span>
+                  <input name="location" type="text" placeholder="e.g. Debe / San Fernando / Chaguanas" />
+                </label>
+                <label class="field">
                   <span>Details (size, length, machine/vehicle)</span>
-                  <textarea name="Details" rows="5" placeholder="Example: 1/2&quot; hydraulic hose, excavator, send fittings photo via WhatsApp." required></textarea>
+                  <textarea name="details" rows="5" placeholder="Example: 1/2&quot; hydraulic hose, excavator, send fittings photo via WhatsApp." required></textarea>
                 </label>
 
                 <div class="form-actions">
-                  <button class="btn btn-primary" type="submit">Send Email Request</button>
-                  <a class="btn" href="https://wa.me/18687017720" target="_blank" rel="noopener">WhatsApp Instead</a>
+                  <button class="btn btn-primary" type="submit">Send via WhatsApp</button>
+                  <a class="btn" href="mailto:info@sgltt.com">Email Instead</a>
                 </div>
+                <p class="tiny-note" data-form-msg aria-live="polite"></p>
 
                 <p class="tiny-note">
-                  Tip: Attach photos in WhatsApp (recommended). Email clients may not attach images reliably from a web form.
+                  Tip: Add photos to WhatsApp before sending to speed up matching.
                 </p>
               </form>
+            </div>
+
+            <div class="card" style="margin-top:16px">
+              <h3 style="margin-top:0">One-tap quote templates</h3>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="https://wa.me/18687017720?text=Hydraulic%20Hose%20Quote%0ASize%3A%20____%0AMachine%3A%20____%0ALocation%3A%20____%0APhotos%3A%20attached" target="_blank" rel="noopener">Hydraulic Hose Quote</a>
+                <a class="btn" href="https://wa.me/18687017720?text=Control%20Cable%20Quote%0ACable%20type%3A%20____%0ALength%3A%20____%0AEnds%20photos%3A%20attached" target="_blank" rel="noopener">Control Cable Quote</a>
+                <a class="btn" href="https://wa.me/18687017720?text=Emergency%20Request%0AItem%3A%20____%0ALocation%3A%20____%0ARequired%20by%3A%20____" target="_blank" rel="noopener">Emergency / Same-day</a>
+              </div>
             </div>
 
             <div class="map card" style="padding:0; overflow:hidden; margin-top:16px" aria-label="Map">
@@ -263,6 +284,11 @@
     </section>
   </main>
 
+    <div class="sticky-cta" aria-label="Quick mobile contact">
+    <a class="btn" href="tel:+18687017720">Call Now</a>
+    <a class="btn btn-primary" href="https://wa.me/18687017720?text=Hi%20SGL%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">WhatsApp Quote</a>
+  </div>
+  
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container">

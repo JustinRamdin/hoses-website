@@ -152,6 +152,57 @@
     navCta.append(authWrap);
   }
 
+  function initLiveStatus() {
+    document.querySelectorAll('[data-open-status]').forEach((node) => {
+      const now = new Date();
+      const day = now.getDay(); // 0 Sun ... 6 Sat
+      const hour = now.getHours();
+      const isOpen = day >= 1 && day <= 6 && hour >= 8 && hour < 18;
+      const closes = '6:00 PM';
+      const opens = '8:00 AM';
+      node.innerHTML = `
+        <span class="status-dot ${isOpen ? 'is-open' : ''}" aria-hidden="true"></span>
+        ${isOpen ? `Open now • closes at ${closes}` : `Closed now • opens at ${opens}`}
+      `;
+    });
+  }
+
+  function initContactQuoteForm() {
+    const form = document.querySelector('[data-quote-form]');
+    const msg = document.querySelector('[data-form-msg]');
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const name = String(data.get('name') || '').trim();
+      const phone = String(data.get('phone') || '').trim();
+      const category = String(data.get('category') || '').trim();
+      const urgency = String(data.get('urgency') || '').trim();
+      const location = String(data.get('location') || '').trim();
+      const details = String(data.get('details') || '').trim();
+
+      if (!name || !category || !details) {
+        if (msg) msg.textContent = 'Please fill in your name, category, and details.';
+        return;
+      }
+
+      const text =
+`Hi SGL, I need a quote.
+Name: ${name}
+Phone/WhatsApp: ${phone || 'Not provided'}
+Category: ${category}
+Urgency: ${urgency || 'Standard'}
+Location: ${location || 'Not provided'}
+Details: ${details}`;
+
+      const whatsappUrl = `https://wa.me/18687017720?text=${encodeURIComponent(text)}`;
+      window.open(whatsappUrl, '_blank', 'noopener');
+      if (msg) msg.textContent = 'Great — WhatsApp opened with your prefilled request.';
+      form.reset();
+    });
+  }
+
   function initAuthPage() {
     const authRoot = document.querySelector('[data-auth-root]');
     if (!authRoot) return;
@@ -444,6 +495,8 @@
 
   ensureSeedData();
   setupMenuAndYear();
+  initLiveStatus();
+  initContactQuoteForm();
   mountAuthButtons();
   initAuthPage();
   initProductsPage();
